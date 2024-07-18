@@ -223,6 +223,9 @@ export function Home() {
                 <div className="fixed left-4 bottom-4 text-white opacity-50">
                     <span className="mb-4">Aufgabe 3 - Mini Hackathon - doomsweb</span>
                 </div>
+                <div className="fixed right-4 bottom-4 text-white opacity-50">
+                    <span className="mb-4">Foto von <a href="https://unsplash.com/de/@felixmooneeram?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Felix Mooneeram</a> auf <a href="https://unsplash.com/de/fotos/red-cinema-chair-evlkOfkQ5rE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></span>
+                </div>
             </div>
         </React.Fragment>
     )
