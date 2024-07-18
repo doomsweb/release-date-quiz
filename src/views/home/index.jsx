@@ -117,7 +117,7 @@ export function Home() {
                     <span className="text-2xl">Dein Highscore: {hightScore}</span>
                 </div>
                 {lives === 0 && (
-                    <div className="fixed flex flex-col justify-center w-96 h-96 shadow-md rounded-md bg-white/95 text-black">
+                    <div className="fixed flex flex-col justify-center w-96 shadow-md rounded-md bg-white/95 text-black">
                         <Lottie
                             className="h-60"
                             animationData={gameOverIcon}
@@ -132,7 +132,8 @@ export function Home() {
                                 }
                             }
                         />
-                        <span className="text-2xl font-bold text-center">Du hast leider keine Leben mehr übrig :(</span>
+                        <span className="text-2xl text-center">Du hast leider keine Leben mehr übrig :(</span>
+                        <span className="text-2xl font-bold text-center mt-2">Punktzahl: {correct}</span>
                         <button
                             className="rounded-md m-4 bg-indigo-600 px-4 py-3 text-xl font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             onClick={() => {setLives(3); setShowResult(null); setResult(null); getMovie(); setCorrect(0)}}
@@ -144,7 +145,7 @@ export function Home() {
 
                 )}
                 {lives > 0 && showResult && (
-                    <div className="fixed flex flex-col justify-center w-96 h-96 shadow-md rounded-md bg-white/95 text-black">
+                    <div className="fixed flex flex-col justify-center w-96 shadow-md rounded-md bg-white/95 text-black">
                         <Lottie
                             className="h-60"
                             animationData={result ? rightIcon : wrongIcon}
@@ -159,7 +160,7 @@ export function Home() {
                                 }
                             }
                         />
-                        <span className="text-2xl font-bold text-center">{result ? "Das war richtig!" : `Nein, es wäre ${movie.year} gewesen.`}</span>
+                        <span className="text-2xl text-center">{result ? "Das war richtig!" : `Schade, die richtige Antwort wäre ${movie.year} gewesen.`}</span>
                         <button
                             className="rounded-md m-4 bg-indigo-600 px-4 py-3 text-xl font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             onClick={() => {setShowResult(false); getMovie()}}
@@ -172,33 +173,33 @@ export function Home() {
                     {lives === 3 && (
                         <div className="flex justify-center items-center gap-2">
                             <span>Leben:</span>
-                            <VideoCameraIcon className="h-16 text-red-600" />
-                            <VideoCameraIcon className="h-16 text-red-600" />
-                            <VideoCameraIcon className="h-16 text-red-600" />
+                            <VideoCameraIcon className="h-16 text-red-600 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 bg-gray-800 p-3 rounded-full" />
                         </div>
                     )}
                     {lives === 2 && (
                         <div className="flex justify-center items-center gap-2">
                             <span>Leben:</span>
-                            <VideoCameraIcon className="h-16 text-red-600" />
-                            <VideoCameraIcon className="h-16 text-red-600" />
-                            <VideoCameraIcon className="h-16 text-red-600 opacity-40" />
+                            <VideoCameraIcon className="h-16 text-red-600 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 opacity-40 bg-gray-800 p-3 rounded-full" />
                         </div>
                     )}
                     {lives === 1 && (
                         <div className="flex justify-center items-center gap-2">
                             <span>Leben:</span>
-                            <VideoCameraIcon className="h-16 text-red-600" />
-                            <VideoCameraIcon className="h-16 text-red-600 opacity-40" />
-                            <VideoCameraIcon className="h-16 text-red-600 opacity-40" />
+                            <VideoCameraIcon className="h-16 text-red-600 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 opacity-40 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 opacity-40 bg-gray-800 p-3 rounded-full" />
                         </div>
                     )}
                     {lives === 0 && (
                         <div className="flex justify-center items-center gap-2">
                             <span>Leben:</span>
-                            <VideoCameraIcon className="h-16 text-red-600 opacity-40" />
-                            <VideoCameraIcon className="h-16 text-red-600 opacity-40" />
-                            <VideoCameraIcon className="h-16 text-red-600 opacity-40" />
+                            <VideoCameraIcon className="h-16 text-red-600 opacity-40 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 opacity-40 bg-gray-800 p-3 rounded-full" />
+                            <VideoCameraIcon className="h-16 text-red-600 opacity-40 bg-gray-800 p-3 rounded-full" />
                         </div>
                     )}
                 </div>
