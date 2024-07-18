@@ -97,12 +97,12 @@ export function Home() {
         const allYears = [year, plusYear, minusYear];
         const shuffledYears = shuffleArray(allYears);
         return (
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row gap-8">
                 {years?.map((randomYear) => (
                     <button 
                         key={randomYear}
                         type="button"
-                        className="rounded-md bg-indigo-600 px-6 py-4 text-2xl font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="rounded-md bg-indigo-600 px-6 py-4 text-2xl font-semibold text-white shadow-sm transition ease-in-out hover:scale-110 hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         onClick={() => handleClick(randomYear)}
                     >
                         {randomYear}
@@ -134,7 +134,7 @@ export function Home() {
                                 }
                             }
                         />
-                        <span className="text-2xl text-center">Du hast leider keine Leben mehr übrig :(</span>
+                        <span className="text-2xl text-center">Du hast leider alle Leben aufgebraucht 😭</span>
                         <span className="text-2xl font-bold text-center mt-2">Punktzahl: {correct}</span>
                         <button
                             className="rounded-md m-4 bg-indigo-600 px-4 py-3 text-xl font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -162,7 +162,8 @@ export function Home() {
                                 }
                             }
                         />
-                        <span className="text-2xl text-center">{result ? "Das war richtig!" : `Schade, die richtige Antwort wäre ${movie.year} gewesen.`}</span>
+                        {result ? <span className="text-2xl text-center">Das war richtig! 🤩</span> : <span className="text-2xl text-center">Schade, die richtige Antwort wäre <span className="font-bold text-green-700">{movie.year}</span> gewesen. 🥲</span>}
+                        {/* <span className="text-2xl text-center">{result ? "Das war richtig!" : `Schade, die richtige Antwort wäre ${movie.year} gewesen.`}</span> */}
                         <button
                             className="rounded-md m-4 bg-indigo-600 px-4 py-3 text-xl font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             onClick={() => {setShowResult(false); setLoading(true); getMovie();}}
