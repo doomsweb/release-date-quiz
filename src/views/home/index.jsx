@@ -18,6 +18,7 @@ export function Home() {
     const [years, setYears] = useState(null)
     const [correct, setCorrect] = useState(0)
     const [hightScore, setHighscore] = useState(localStorage.getItem("highscore") || 0)
+    const [loading, setLoading] = useState(true)
 
     const getRandomEntry = (array) => {
         const randomIndex = Math.floor(Math.random() * array.length);
@@ -37,6 +38,7 @@ export function Home() {
             const realYear = parseInt(response.data.Year);
             const allYears = [firstYear, secondYear, realYear];
             setYears(shuffleArray(allYears))
+            setLoading(false)
         })
     }
 
@@ -136,7 +138,7 @@ export function Home() {
                         <span className="text-2xl font-bold text-center mt-2">Punktzahl: {correct}</span>
                         <button
                             className="rounded-md m-4 bg-indigo-600 px-4 py-3 text-xl font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            onClick={() => {setLives(3); setShowResult(null); setResult(null); getMovie(); setCorrect(0)}}
+                            onClick={() => {setLives(3); setShowResult(null); setResult(null); setLoading(true); getMovie(); setCorrect(0)}}
                         >
                             Neues Spiel
                         </button>
@@ -163,7 +165,7 @@ export function Home() {
                         <span className="text-2xl text-center">{result ? "Das war richtig!" : `Schade, die richtige Antwort wäre ${movie.year} gewesen.`}</span>
                         <button
                             className="rounded-md m-4 bg-indigo-600 px-4 py-3 text-xl font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            onClick={() => {setShowResult(false); getMovie()}}
+                            onClick={() => {setShowResult(false); setLoading(true); getMovie();}}
                         >
                             Nächster Film
                         </button>
@@ -203,11 +205,21 @@ export function Home() {
                         </div>
                     )}
                 </div>
-                <div className="w-full flex flex-col gap-4 justify-center items-center">
-                    <div className="text-2xl">In welchem Jahr wurde <span className="font-bold">{movie?.title}</span> veröffentlicht?</div>
-                    <img className="border-4 border-white rounded-md shadow-2xl h-[500px] min-h-[500px]" src={movie?.poster} alt={movie?.title} />
-                    <div>{gernerateButtons(movie?.year)}</div>
-                </div>
+                {loading && (
+                    <div className="flex flex-col gap-2 justify-center items-center mt-10">
+                        <div
+                            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] text-primary"
+                            role="status">
+                        </div>
+                    </div>
+                )}
+                {!loading && (
+                    <div className="w-full flex flex-col gap-4 justify-center items-center">
+                        <div className="text-2xl">In welchem Jahr wurde <span className="font-bold">{movie?.title}</span> veröffentlicht?</div>
+                        <img className="border-4 border-white rounded-md shadow-2xl h-[500px] min-h-[500px]" src={movie?.poster} alt={movie?.title} />
+                        <div>{gernerateButtons(movie?.year)}</div>
+                    </div>
+                )}
                 <div className="fixed left-4 bottom-4 text-white opacity-50">
                     <span className="mb-4">Aufgabe 3 - Mini Hackathon - doomsweb</span>
                 </div>
